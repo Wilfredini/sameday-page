@@ -1,0 +1,65 @@
+@use "./colors" as *;
+@use "./mixins" as *;
+@use "./User" as *;
+
+.navbar {
+  width: 100vw;
+  font-family: "Poppins";
+  font-size: 1.3rem;
+  font-weight: 600;
+  display: flex;
+  background-color: $light;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
+
+  z-index: 3333;
+
+  .ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: $light;
+
+    li {
+      border-radius: 10px;
+      margin-right: 30px;
+      list-style: none;
+      transition: all 0.3s ease-in-out;
+      background-color: $light;
+
+      :hover {
+        border-radius: 10px;
+        background-color: $fith;
+        color: $light;
+        transition: all 0.3s ease-in-out;
+      }
+
+      a {
+        border-radius: 10px;
+        background-color: $light;
+
+        padding: 5px 10px;
+        text-decoration: none;
+        color: $main;
+        transition: all 0.3s ease-in-out;
+
+        :hover {
+          background-color: $light;
+          color: white;
+        }
+      }
+      .active {
+        background-color: $fith;
+        color: white;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
+}
+.logo {
+  width: 200px;
+  height: 80px;
+  background-color: $light;
+}

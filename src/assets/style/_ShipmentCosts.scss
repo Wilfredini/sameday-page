@@ -1,0 +1,124 @@
+@use "./colors" as *;
+@use "./mixins" as *;
+.transportName {
+  padding: 15px 10px;
+  width: 350px;
+}
+
+.btn-add {
+  font-size: 24px;
+  font-weight: 600;
+  color: $success;
+}
+
+.btn-delete {
+  font-size: 24px;
+  font-weight: 600;
+  color: $danger;
+}
+
+.total-price {
+  margin: 35px 0;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $fith;
+  color: $text;
+  height: 50px;
+  width: 100%;
+  border-radius: 10px;
+  border: 2px solid $main;
+}
+
+.main-costs {
+  width: 100%;
+}
+
+.shipment-rates {
+  width: 100%;
+  border: 1px solid $main;
+  box-shadow: 0px 0px 10px $main;
+  text-align: center;
+  overflow: hidden;
+  border-radius: 10px;
+
+  .input {
+    text-align: center;
+    background-color: $input;
+    height: 40px;
+    outline: none;
+    border: 1px solid $main;
+    border-radius: 0px 10px 10px 0px;
+    padding: 3px;
+    max-width: 100px;
+
+    :active {
+      background-color: $fith;
+    }
+  }
+
+  .label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    border: 1px solid $main;
+    border-radius: 10px 0px 0px 10px;
+    border-right: none;
+    padding: 3px 10px;
+    background-color: $ternary;
+    font-size: 16px;
+    width: 80px;
+    color: $light;
+    font-weight: 500;
+    font-family: "Poppins", Courier, monospace;
+  }
+  .input-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .input-box {
+    margin: 15px 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  .costs-title {
+    border-bottom: 1px solid $main;
+    background-color: $ternary;
+    padding: 25px 0;
+    color: $light;
+  }
+
+  .costs-wrapper {
+    padding: 25px 25px;
+  }
+
+  .select {
+    text-align: center;
+    background-color: $fith;
+    height: 40px;
+    border: 1px solid $main;
+    padding: 3px;
+    max-width: 320px;
+  }
+
+  .costInput {
+    text-align: center;
+    background-color: $fith;
+    height: 40px;
+    border: 1px solid $main;
+    padding: 3px;
+    max-width: 300px;
+  }
+
+  .costsLabel {
+    color: $main;
+  }
+}

@@ -1,0 +1,88 @@
+@use "./colors" as *;
+@use "./mixins" as *;
+
+.tablePage {
+  background-color: $light;
+
+  .tableTitle {
+    font-size: 40px;
+    color: $main;
+    font-family: "Times New Roman", Times, serif;
+    position: relative;
+  }
+
+  .tableTitle::before {
+    content: "";
+    position: absolute;
+    left: -65px;
+    top: 50%;
+    width: 50px;
+    height: 2px;
+    background-color: $main;
+  }
+
+  .tableTitle::after {
+    content: "";
+    position: absolute;
+    right: -65px;
+    top: 50%;
+    width: 50px;
+    height: 2px;
+    background-color: $main;
+  }
+
+  .tableRow {
+    width: 150px;
+  }
+
+  .review {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100vw;
+    background-color: $fith;
+
+    .table {
+      width: 1000px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 45px;
+
+      .tableHeader {
+        color: $main;
+        background-color: $fith;
+        box-shadow: 0px 0px 5px $fourth;
+        th {
+          padding: 15px 0px;
+        }
+      }
+
+      .tableBox {
+        width: 100%;
+      }
+
+      .tableBody {
+        background-color: $light;
+        box-shadow: 0px 0px 5px $fourth;
+
+        :hover :not(button) {
+          background-color: $fourth;
+        }
+      }
+    }
+
+    p {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      margin: 0;
+    }
+    image {
+      padding: 20px;
+    }
+  }
+}

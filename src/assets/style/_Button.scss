@@ -1,0 +1,11 @@
+@use "./colors" as *;
+@use "./mixins" as *;
+
+.btn-ui {
+  @include button($main, $light);
+}
+
+.btn-submit {
+  @include button($success, $light);
+  width: 150px;
+}

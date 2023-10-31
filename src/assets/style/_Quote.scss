@@ -1,0 +1,135 @@
+@use "./colors" as *;
+@use "./mixins" as *;
+
+.quote {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: $fith;
+
+  .form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .main-quote {
+    width: 100%;
+    min-height: 100%;
+    background-color: $light;
+    padding: 80px 40px;
+  }
+
+  .shipment-dimensions {
+    width: 100%;
+    border: 1px solid $main;
+    box-shadow: 0px 0px 10px $main;
+    margin: 30px 0;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 10px;
+
+    .details {
+      position: relative;
+
+      padding: 20px 0;
+      border-bottom: 1px solid $main;
+    }
+
+    .btn-add {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      font-weight: 600;
+      color: $success;
+    }
+
+    .details-title {
+      border-bottom: 1px solid $main;
+      background-color: $ternary;
+      padding: 25px 0;
+      color: $light;
+    }
+
+    .btn-delete {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 24px;
+      font-weight: 600;
+      color: $danger;
+    }
+
+    .error {
+      margin-top: 5px;
+      color: red;
+    }
+    .input {
+      text-align: center;
+      background-color: $input;
+      height: 40px;
+      outline: none;
+      border: 1px solid $main;
+      border-radius: 0px 10px 10px 0px;
+      padding: 3px;
+      max-width: 100px;
+    }
+
+    .label {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40px;
+      border: 1px solid $main;
+      border-radius: 10px 0px 0px 10px;
+      border-right: none;
+      padding: 3px 10px;
+      background-color: $ternary;
+      font-size: 16px;
+      width: 80px;
+      color: $light;
+      font-weight: 500;
+      font-family: "Poppins", Courier, monospace;
+    }
+    .input-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 25px;
+    }
+    .input-box {
+      display: inline-block;
+      padding: 10px 20px;
+    }
+  }
+
+  h3 {
+    text-align: center;
+    font-size: 24px;
+    color: $main;
+  }
+
+  .chargeableWeight {
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $fith;
+    color: $text;
+    height: 50px;
+    width: 350px;
+    border-radius: 10px;
+    border: 2px solid $main;
+  }
+
+  .kilograms {
+    margin-left: 5px;
+  }
+}

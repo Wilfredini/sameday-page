@@ -1,0 +1,37 @@
+@use "./colors" as *;
+@use "./mixins" as *;
+
+.user {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 200px;
+  border-radius: 10px;
+  padding: 15px;
+  background: $main;
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid $light;
+  }
+
+  .user-name {
+    color: $light;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+  }
+
+  .btn-ui {
+    @include button($success, $light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    width: 80px;
+  }
+}
