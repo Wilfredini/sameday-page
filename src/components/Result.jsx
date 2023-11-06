@@ -2,7 +2,7 @@
 import { useQuote } from "./contexts/QuoteContext";
 
 function Result() {
-  const { shipmentDetails, weight } = useQuote();
+  const { shipmentDetails, weight, register } = useQuote();
 
   const summary = shipmentDetails.map((detail) =>
     (detail.lengthOf * detail.width * detail.hight * detail.units) / 6000 >=
@@ -22,7 +22,13 @@ function Result() {
 
   return (
     <div>
-      <p className="chargeableWeight">{total} Kg</p>
+      <input
+        type="text"
+        className="chargeableWeight text-center"
+        disabled
+        value={`${total} Kg`}
+        {...register("chargeableWeight")}
+      />
     </div>
   );
 }

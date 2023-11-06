@@ -23,12 +23,11 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false} />
-
-      <QuoteProvider>
-        <AuthProvider>
-          <BrowserRouter>
+    <BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false} />
+        <QuoteProvider>
+          <AuthProvider>
             <Routes>
               <Route path="/" element={<Welcome />} />
               <Route path="/home" element={<HomePage />} />
@@ -37,32 +36,34 @@ function App() {
 
               <Route path="login" element={<Login />} />
             </Routes>
-          </BrowserRouter>
-        </AuthProvider>
-      </QuoteProvider>
-      <Toaster
-        position="top-center"
-        gutter={12}
-        containerStyle={{
-          margin: "8px",
-        }}
-        toastOptions={{
-          success: {
-            duration: 3000,
-          },
-          error: {
-            duration: 3000,
-          },
-          style: {
-            fontSize: "16px",
-            maxWidth: "500px",
-            padding: "16px 24px",
-            backgroundColor: "$main",
-            color: "$light",
-          },
-        }}
-      />
-    </QueryClientProvider>
+          </AuthProvider>
+        </QuoteProvider>
+
+        <Toaster
+          position="top-center"
+          gutter={12}
+          containerStyle={{
+            margin: "8px",
+          }}
+          toastOptions={{
+            success: {
+              duration: 3000,
+            },
+            error: {
+              duration: 3000,
+            },
+            style: {
+              fontSize: "16px",
+              maxWidth: "500px",
+              padding: "20px 30px",
+              borderRadius: "10px",
+              background: "$fith",
+              color: "$main",
+            },
+          }}
+        />
+      </QueryClientProvider>
+    </BrowserRouter>
   );
 }
 

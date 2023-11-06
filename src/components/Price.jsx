@@ -2,7 +2,8 @@
 import { useQuote } from "./contexts/QuoteContext";
 
 function Price() {
-  const { shipmentDetails, shipmentCosts, weight } = useQuote();
+  const { shipmentDetails, shipmentCosts, weight, register, setValue } =
+    useQuote();
 
   const summary = shipmentDetails.map((detail) =>
     (detail.lengthOf * detail.width * detail.hight * detail.units) / 6000 >=
@@ -72,7 +73,13 @@ function Price() {
 
   return (
     <div>
-      <p className="chargeableWeight">{currencyFormat.format(totalCosts)}</p>
+      <input
+        className="chargeableWeight text-center"
+        type="text"
+        value={setValue("totalCosts", currencyFormat.format(totalCosts))}
+        {...register("totalCosts")}
+        disabled
+      />
     </div>
   );
 }

@@ -31,7 +31,7 @@
 
       :hover {
         border-radius: 10px;
-        background-color: $fith;
+        background-color: $ternary;
         color: $light;
         transition: all 0.3s ease-in-out;
       }
@@ -51,7 +51,7 @@
         }
       }
       .active {
-        background-color: $fith;
+        background-color: $ternary;
         color: white;
         transition: all 0.3s ease-in-out;
       }

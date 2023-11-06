@@ -1,20 +1,49 @@
-/* eslint-disable no-case-declarations */
-/* eslint-disable no-undef */
-/* eslint-disable react/prop-types */
 /* eslint-disable react-refresh/only-export-components */
+/* eslint-disable react/prop-types */
 import { createContext, useContext, useState } from "react";
+import { toast } from "react-hot-toast";
+
 import { useForm, useFieldArray } from "react-hook-form";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { createQuote } from "../../services/apiquotes";
+import { useNavigate } from "react-router-dom";
 
 const QuoteContext = createContext();
 
 function QuoteProvider({ children }) {
-  const form = useForm({});
-  const { register, control, handleSubmit, formState, reset } = form;
-  const [data, setData] = useState({});
+  const navigate = useNavigate();
+
+  const form = useForm({
+    defaultValues: {
+      shipmentDetails: [
+        {
+          units: "",
+          lengthOf: "",
+          width: "",
+          hight: "",
+          grossWeight: "",
+          chargeableWeight: "",
+        },
+      ],
+      costs: [
+        {
+          airRate: "",
+          description: "",
+          selection: "",
+          currency: "",
+        },
+      ],
+      costResult: "",
+      totalCosts: "",
+      weight: "",
+      image: "",
+    },
+  });
+  const { register, control, handleSubmit, formState, reset, setValue } = form;
 
   const queryClient = useQueryClient();
+
+  const [data, setData] = useState({});
 
   const { mutate: mutateCreation, isLoading: isCreating } = useMutation({
     mutationFn: createQuote,
@@ -22,14 +51,23 @@ function QuoteProvider({ children }) {
       toast.success("Nacenění vytvořeno");
       queryClient.invalidateQueries({ queryKey: ["quotes"] });
       reset();
+      navigate("/newQuote");
+      setData(0);
     },
     onError: (err) => toast.error(err.message),
   });
+  const mainData = data;
+  console.log(mainData);
+
+  const handleCreate = () => {
+    setData(mainData);
+    mutateCreation({ ...mainData, image: data.image[0] });
+    toast.success("Logo nahráno");
+  };
 
   const shipmentDetails = data.shipmentDetails;
   const shipmentCosts = data.costs;
   const weight = data.weight;
-  console.log(data);
 
   const { errors } = formState;
 
@@ -54,9 +92,10 @@ function QuoteProvider({ children }) {
   });
 
   const onSubmit = (data) => {
+    console.log(data);
     setData(data);
-    mutateCreation(data);
   };
+
   console.log(data);
   return (
     <QuoteContext.Provider
@@ -78,6 +117,9 @@ function QuoteProvider({ children }) {
         weight,
         isCreating,
         mutateCreation,
+        setData,
+        handleCreate,
+        setValue,
       }}
     >
       {children}

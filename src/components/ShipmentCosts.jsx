@@ -1,4 +1,5 @@
 import AddButton from "./AddButton";
+import CostResult from "./CostResult";
 import DeleteButton from "./DeleteButton";
 import { useQuote } from "./contexts/QuoteContext";
 
@@ -19,6 +20,7 @@ function ShipmentCosts() {
                         airRate: "",
                         description: "",
                         selection: "",
+                        CostResult: "",
                       })
                     }
                   />
@@ -28,7 +30,9 @@ function ShipmentCosts() {
                       id="selection"
                       {...register(`costs.${index}.selection`)}
                     >
-                      <option value="rate">Rejt z účtované váhy</option>
+                      <option defaultValue="rate" value="rate">
+                        Rejt z účtované váhy
+                      </option>
                       <option value="price">Price</option>
                       <option value="grossWeightRate">
                         Rejt z reálné váhy
@@ -62,10 +66,15 @@ function ShipmentCosts() {
                       id="currency"
                       {...register(`costs.${index}.currency`)}
                     >
-                      <option value="eur">€</option>
-                      <option value="usd">$</option>
+                      <option defaultValue="EUR" value="EUR">
+                        €
+                      </option>
+                      <option value="USD">$</option>
                       <option value="czk">CZK</option>
                     </select>
+                  </div>
+                  <div className="d-flex flex-column">
+                    <CostResult index={index} />
                   </div>
                   {(index.length === 0 && <DeleteButton />) || (
                     <DeleteButton

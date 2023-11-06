@@ -2,9 +2,14 @@
 @use "./mixins" as *;
 
 .tablePage {
-  background-color: $light;
+  background-color: $fith;
+
+  .btn {
+    margin-bottom: 40px;
+  }
 
   .tableTitle {
+    margin-top: 60px;
     font-size: 40px;
     color: $main;
     font-family: "Times New Roman", Times, serif;
@@ -32,7 +37,16 @@
   }
 
   .tableRow {
+    font-weight: 700;
+    color: $main;
     width: 150px;
+    border: 1px solid $main;
+
+    .brandLogo {
+      border: 1px solid $ternary;
+      max-width: 120px;
+      max-height: 80px;
+    }
   }
 
   .review {
@@ -42,19 +56,24 @@
     flex-direction: column;
     min-height: 100vh;
     width: 100vw;
-    background-color: $fith;
+    background-color: $light;
 
     .table {
-      width: 1000px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      margin-top: 40px;
+      position: relative;
       padding: 45px;
+      height: 500px;
+      overflow: scroll;
+      border: 1px solid $main;
+      border-radius: 15px;
+      box-shadow: 0px 0px 10px $main;
 
       .tableHeader {
-        color: $main;
-        background-color: $fith;
+        color: $fith;
+        background-color: $main;
         box-shadow: 0px 0px 5px $fourth;
+        border: 1px solid $main;
+
         th {
           padding: 15px 0px;
         }
@@ -62,14 +81,41 @@
 
       .tableBox {
         width: 100%;
+        border-collapse: separate;
+        border-color: $main;
       }
 
       .tableBody {
         background-color: $light;
         box-shadow: 0px 0px 5px $fourth;
+        border: 1px solid $main;
 
-        :hover :not(button) {
-          background-color: $fourth;
+        :hover :not(.editIcon, .deleteIcon) {
+          background-color: $fith;
+        }
+      }
+
+      .rowBox {
+        margin-bottom: 5px;
+        height: 150px;
+
+        .editIcon {
+          color: $secondary;
+          margin: 10px 0px;
+          width: 100px;
+
+          :hover {
+            color: $main;
+          }
+        }
+        .deleteIcon {
+          color: $secondary;
+          margin: 10px 0px;
+          width: 100px;
+
+          :hover {
+            color: $danger;
+          }
         }
       }
     }

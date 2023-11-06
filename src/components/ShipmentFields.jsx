@@ -10,6 +10,7 @@ import Result from "./Result";
 import Weight from "./Weight";
 import ShipmentCosts from "./shipmentCosts";
 import Price from "./Price";
+import { AiOutlineUpload } from "react-icons/ai";
 
 function ShipmentFields() {
   const {
@@ -23,54 +24,44 @@ function ShipmentFields() {
     removeUnit,
     shipmentDetails,
     isCreating,
+    handleCreate,
   } = useQuote();
 
   return (
     <>
-      <div className="d-flex justify-content-between">
-        {shipmentDetails && (
-          <div>
-            <h3>Chargeable Weight</h3>
-            <Result />
-          </div>
-        )}
-        {shipmentDetails && (
-          <div>
-            <h3>Gross Weight</h3>
-            <Weight />
-          </div>
-        )}
-        {shipmentDetails && (
-          <div>
-            <h3>Total Price</h3>
-            <Price />
-          </div>
-        )}
-      </div>
-
       <form
         action="form"
         className="form"
         onSubmit={handleSubmit(onSubmit)}
         noValidate
       >
-        <div className="input-box ">
-          <div className="input-wrapper">
+        <div className="input-box">
+          <div className="input-wrapper d-flex ">
             <input
               placeholder="Název přepravy"
-              className="transportName"
+              className="transportName text-center"
               type="text"
               id="name"
               {...register(`name`, {
                 valueAsNumber: false,
               })}
             />
+
+            <label htmlFor="image">
+              <AiOutlineUpload className="logiIcon" /> Logo klienta
+            </label>
+            <input
+              id="image"
+              type="file"
+              accept="image/*"
+              {...register("image")}
+            />
           </div>
         </div>
         <div className="shipment-dimensions ">
           <h2 className="details-title">Detaily zásilky</h2>
           <div className="input-box ">
-            <div className="input-wrapper">
+            <div className="input-wrapper d-flex justify-content-center align-items-center">
               <label className="label" htmlFor="weight">
                 Weight
               </label>
@@ -197,9 +188,43 @@ function ShipmentFields() {
           })}
         </div>
         <ShipmentCosts />
-        <button type="submit" disabled={isCreating} className="btn-submit">
-          Potvrdit
-        </button>
+        <div className="d-flex justify-content-between p-3 w-100">
+          {shipmentDetails && (
+            <div>
+              <h3>Chargeable Weight</h3>
+              <Result />
+            </div>
+          )}
+          {shipmentDetails && (
+            <div>
+              <h3>Gross Weight</h3>
+              <Weight />
+            </div>
+          )}
+          {shipmentDetails && (
+            <div>
+              <h3>Total Price</h3>
+              <Price />
+            </div>
+          )}
+        </div>
+        <div className="d-flex justify-content-center my-4 w-100">
+          <button
+            type="submit"
+            disabled={isCreating}
+            className="btn btn-warning button mx-2"
+          >
+            Přepočítat
+          </button>
+          <button
+            onClick={handleCreate}
+            disabled={isCreating}
+            type="button"
+            className="btn btn-success button mx-2"
+          >
+            Vytvořit
+          </button>
+        </div>
       </form>
       <DevTool control={control} />
     </>

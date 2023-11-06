@@ -13,7 +13,6 @@ function Quote() {
               <div className="fieldWrapper">
                 <ShipmentFields />
               </div>
-              <div className=" text-dark">Hallo</div>
             </div>
           </main>
           <Footer />

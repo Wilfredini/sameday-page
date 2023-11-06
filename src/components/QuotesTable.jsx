@@ -18,10 +18,8 @@ function QuotesTable() {
       <div className="tablePage">
         <div className="review container">
           <h1 className="tableTitle">Přehled naceněných přeprav</h1>
-          {quotes ? (
-            <p>Žádné naceněné přepravy</p>
-          ) : (
-            <div className="table rounded text-center">
+          {(quotes !== null && (
+            <div className="table text-center">
               {isLoading ? (
                 <Spin />
               ) : (
@@ -29,21 +27,26 @@ function QuotesTable() {
                   <thead>
                     <tr className="tableHeader">
                       <th>Firma</th>
-                      <th>Váha</th>
                       <th>Název</th>
-                      <th>Měna</th>
+                      <th>Počet ks</th>
+                      <th>Váha</th>
+                      <th>Cena</th>
                       <th>Akce</th>
                     </tr>
                   </thead>
-                  <tbody className="tableBody">
+                  <tbody>
                     {quotes.map((quote) => (
-                      <TableRow quote={quote} key={quote.id} />
+                      <TableRow
+                        className="tableBody"
+                        quote={quote}
+                        key={quote.id}
+                      />
                     ))}
                   </tbody>
                 </table>
               )}
             </div>
-          )}
+          )) || <p>Žádné naceněné přepravy</p>}
           <Link className="btn btn-success" to="/createQuote">
             Vytvořit nacenění
           </Link>

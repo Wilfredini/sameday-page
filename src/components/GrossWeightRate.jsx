@@ -24,7 +24,7 @@ function GrossWeightRate() {
 
   console.log(finalGrossWeightRates);
 
-  return <p className="chargeableWeight">{} Kg</p>;
+  return <p className="chargeableWeight">{finalGrossWeightRates} Kg</p>;
 }
 
 export default GrossWeightRate;
