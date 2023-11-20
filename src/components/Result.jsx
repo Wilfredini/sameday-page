@@ -2,33 +2,26 @@
 import { useQuote } from "./contexts/QuoteContext";
 
 function Result() {
-  const { shipmentDetails, weight, register } = useQuote();
+  const { shipmentDetails, weight } = useQuote();
 
-  const summary = shipmentDetails.map((detail) =>
-    (detail.lengthOf * detail.width * detail.hight * detail.units) / 6000 >=
-    weight
-      ? (detail.lengthOf * detail.width * detail.hight * detail.units) / 6000
-      : weight
+  const summary = shipmentDetails?.map(
+    (detail) =>
+      (detail.lengthOf * detail.width * detail.hight * detail.units) / 6000
+  );
+  const total = summary?.reduce(
+    (total, currentItem) =>
+      (total = Number(total) + Number(currentItem) || 0).toFixed(2),
+    0
   );
 
-  const total = summary
-    .reduce(
-      (total, currentItem) =>
-        (total = Number(total) + Number(currentItem) || 0),
-      0
-    )
-    .toFixed(2);
-  console.log(weight);
+  const chargeableWeight =
+    total > weight
+      ? Number(total || 0).toFixed(2)
+      : Number(weight || 0).toFixed(2);
 
   return (
     <div>
-      <input
-        type="text"
-        className="chargeableWeight text-center"
-        disabled
-        value={`${total} Kg`}
-        {...register("chargeableWeight")}
-      />
+      <p className="chargeableWeight mx-2">{`${chargeableWeight || 0} Kg`}</p>
     </div>
   );
 }

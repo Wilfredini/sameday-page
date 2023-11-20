@@ -21,7 +21,14 @@
     align-items: center;
     flex-direction: column;
     background-color: $light;
-    padding: 40px;
+    border-radius: 15px;
+    padding: 0px 0px 40px 0px;
+    box-shadow: 0px 20px 30px 12px rgba(0, 0, 0, 0.5);
+
+    .confirmBox {
+      background-color: transparent;
+      color: $main;
+    }
 
     input[type="file"] {
       display: none;
@@ -54,18 +61,17 @@
 
   .shipment-dimensions {
     width: 100%;
-    margin: 30px 0;
+    margin: 0px 0px 30px 0px;
     position: relative;
     text-align: center;
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 15px;
     background-color: $light;
-    box-shadow: 0px 0px 10px $fourth;
 
     .details {
       position: relative;
 
-      padding: 20px 0;
+      padding: 40px 0;
       border-top: 1px solid $main;
     }
 
@@ -79,8 +85,9 @@
     }
 
     .details-title {
-      border-bottom: 1px solid $main;
       background-color: $secondary;
+      border-radius: 15px 15px 0px 0px;
+      border-bottom: 1px solid $main;
       padding: 25px 0;
       color: $light;
     }

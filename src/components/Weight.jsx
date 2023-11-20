@@ -1,19 +1,11 @@
 import { useQuote } from "./contexts/QuoteContext";
 
 function Weight() {
-  const { weight, register } = useQuote();
+  const { weight } = useQuote();
 
-  const grossWeight = weight.toFixed(2);
+  const grossWeight = Number(weight || 0).toFixed(2);
 
-  return (
-    <input
-      className="chargeableWeight text-center"
-      type="text"
-      {...register("grossWeight")}
-      disabled
-      value={`${grossWeight} Kg`}
-    />
-  );
+  return <p className="chargeableWeight mx-2">{`${grossWeight || 0} Kg`}</p>;
 }
 
 export default Weight;

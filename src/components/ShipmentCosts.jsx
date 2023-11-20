@@ -5,6 +5,7 @@ import { useQuote } from "./contexts/QuoteContext";
 
 function ShipmentCosts() {
   const { register, appendCost, removeCost, costsFields } = useQuote();
+
   return (
     <div className="w-100">
       <div className="shipment-rates">
@@ -19,8 +20,8 @@ function ShipmentCosts() {
                       appendCost({
                         airRate: "",
                         description: "",
-                        selection: "",
-                        CostResult: "",
+                        selection: "rate",
+                        currency: "EUR",
                       })
                     }
                   />
@@ -55,7 +56,6 @@ function ShipmentCosts() {
                       placeholder="Hodnota"
                       type="text"
                       id="airRate"
-                      name="airRate"
                       className="costInput"
                       {...register(`costs.${index}.airRate`)}
                     />
@@ -67,15 +67,13 @@ function ShipmentCosts() {
                       {...register(`costs.${index}.currency`)}
                     >
                       <option defaultValue="EUR" value="EUR">
-                        €
+                        EUR
                       </option>
-                      <option value="USD">$</option>
-                      <option value="czk">CZK</option>
+                      <option value="USD">USD</option>
+                      <option value="CZK">CZK</option>
                     </select>
                   </div>
-                  <div className="d-flex flex-column">
-                    <CostResult index={index} />
-                  </div>
+                  <CostResult index={index} />
                   {(index.length === 0 && <DeleteButton />) || (
                     <DeleteButton
                       disabled={true}
@@ -86,6 +84,16 @@ function ShipmentCosts() {
               </div>
             );
           })}
+        </div>
+
+        <div className="text-center salesCost">
+          <input
+            placeholder="Prodejka"
+            type="text"
+            id="salesCost"
+            className="costInput"
+            {...register(`salesCost`)}
+          />
         </div>
       </div>
     </div>

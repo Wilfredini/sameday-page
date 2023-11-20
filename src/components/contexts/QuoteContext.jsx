@@ -21,20 +21,17 @@ function QuoteProvider({ children }) {
           lengthOf: "",
           width: "",
           hight: "",
-          grossWeight: "",
-          chargeableWeight: "",
         },
       ],
       costs: [
         {
           airRate: "",
           description: "",
-          selection: "",
-          currency: "",
+          selection: "rate",
+          currency: "EUR",
         },
       ],
-      costResult: "",
-      totalCosts: "",
+      salesCost: "",
       weight: "",
       image: "",
     },
@@ -44,6 +41,62 @@ function QuoteProvider({ children }) {
   const queryClient = useQueryClient();
 
   const [data, setData] = useState({});
+
+  const shipmentDetails = data.shipmentDetails;
+  const shipmentCosts = data.costs;
+  const weight = data.weight;
+  const salesCost = data.salesCost;
+
+  const summary = shipmentDetails?.map(
+    (detail) =>
+      (detail.lengthOf * detail.width * detail.hight * detail.units) / 6000
+  );
+
+  const total = summary?.reduce(
+    (total, currentItem) => (total = Number(total) + Number(currentItem)),
+    0
+  );
+
+  const chargeableWeight = total > weight ? total : weight;
+
+  const prices = shipmentCosts?.map((cost) =>
+    cost.selection === "price" || cost.selection === "" || cost.airRate === ""
+      ? Number(0) + Number(cost.airRate)
+      : Number(cost.airRate) === 0
+  );
+
+  const finalPrices = prices?.reduce(
+    (total, currentItem) => (total = Number(total) + Number(currentItem) || 0),
+    0
+  );
+
+  const rates = shipmentCosts?.map(
+    (cost) =>
+      (cost.selection === "rate" && Number(chargeableWeight)) *
+      Number(cost.airRate)
+  );
+
+  const finalRates = rates?.reduce(
+    (total, currentItem) => (total = total + Number(currentItem) || 0),
+    0
+  );
+
+  const grossWeightRates = shipmentCosts?.map(
+    (cost) =>
+      (cost.selection === "grossWeightRate" && Number(weight)) *
+      Number(cost.airRate)
+  );
+
+  const finalGrossWeightRates = grossWeightRates?.reduce(
+    (total, currentItem) => (total = total + Number(currentItem) || 0),
+    0
+  );
+
+  const totalCosts = (
+    Number(finalPrices || 0) +
+    Number(finalRates || 0) +
+    Number(finalGrossWeightRates || 0)
+  ).toFixed(2);
 
   const { mutate: mutateCreation, isLoading: isCreating } = useMutation({
     mutationFn: createQuote,
@@ -56,18 +109,13 @@ function QuoteProvider({ children }) {
     },
     onError: (err) => toast.error(err.message),
   });
+
   const mainData = data;
   console.log(mainData);
-
   const handleCreate = () => {
-    setData(mainData);
     mutateCreation({ ...mainData, image: data.image[0] });
     toast.success("Logo nahráno");
   };
-
-  const shipmentDetails = data.shipmentDetails;
-  const shipmentCosts = data.costs;
-  const weight = data.weight;
 
   const { errors } = formState;
 
@@ -96,7 +144,6 @@ function QuoteProvider({ children }) {
     setData(data);
   };
 
-  console.log(data);
   return (
     <QuoteContext.Provider
       value={{
@@ -119,7 +166,9 @@ function QuoteProvider({ children }) {
         mutateCreation,
         setData,
         handleCreate,
+        totalCosts,
         setValue,
+        salesCost,
       }}
     >
       {children}

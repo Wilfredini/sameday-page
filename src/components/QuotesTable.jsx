@@ -11,8 +11,6 @@ function QuotesTable() {
     queryFn: getQuotes,
   });
 
-  console.log(quotes);
-
   return (
     <>
       <div className="tablePage">
@@ -30,7 +28,8 @@ function QuotesTable() {
                       <th>Název</th>
                       <th>Počet ks</th>
                       <th>Váha</th>
-                      <th>Cena</th>
+                      <th>Náklad</th>
+                      <th>Prodejka</th>
                       <th>Akce</th>
                     </tr>
                   </thead>
